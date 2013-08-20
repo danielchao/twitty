@@ -1,3 +1,29 @@
 html { height: 100% }
-body { height: 100%; margin: 0; padding: 0 }
-#map-canvas { height: 100% }
+body { 
+    height: 100%; 
+}
+#map-canvas { 
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+table {
+    margin-top: 20%;
+    cursor: pointer;
+    cusor: hand;
+}
+
+#feed-panel {
+    background-color: grey;
+    position: absolute;
+    margin-top: 2%;
+    height: 98%;
+    width: 17%;
+    left: -17%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pac-container {
+    top: 52px !important;
+}

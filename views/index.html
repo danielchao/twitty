@@ -6,16 +6,28 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-        <script type="text/javascript" src="/javascripts/key.js"></script>
         <script type="text/javascript"
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAggyKjiFuA6vvWNW8xRlYD-T_8zpc_794&sensor=true">
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAggyKjiFuA6vvWNW8xRlYD-T_8zpc_794&libraries=places&sensor=true">
         </script>
+        <script type="text/javascript" src="/javascripts/ui.js"> </script>
         <script type="text/javascript" src="/javascripts/map.js"> </script>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/styles.css" rel="stylesheet">
+        <nav class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Twitty</a>
+            </div>
+            <div class="navbar-form navbar-left" role="search">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="button" id='feed-btn' class="btn btn-default navbar-btn">Feed</button>
+        </nav>
         <title>twitty</title>
     </head>
     <body>
         <div id="map-canvas"> </div>
+        <div id="feed-panel">
+            <table class='table'></table>
+        </div>
     </body>
 </html>

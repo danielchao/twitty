@@ -12,16 +12,20 @@ var Twit = require('twit');
 var T = new Twit(key.twitterApi);
 //var sanFrancisco = [ '-122.75', '36.8', '-121.75', '37.8' ];
 //var stream = T.stream('statuses/sample');
+var stream = T.stream('statuses/sample');
 
 io.sockets.on('connection', function(socket) {
-    var stream = T.stream('statuses/sample');
     socket.on('relocate', function(loc) {
         loc = [loc.ia.b, loc.ea.b, loc.ia.d, loc.ea.d];
-        stream.stop();
-        stream = T.stream('statuses/filter', { locations: loc });
+        stream = T.stream('statuses/filter', { locations: loc } );
         stream.on('tweet', function(tweet) {
-            socket.emit('tweet', tweet);
+            if (tweet.coordinates || tweet.place) {
+                io.sockets.emit('tweet', tweet);
+            }
         });
+    });
+    stream.on('disconnect', function(disconnectMessage) {
+        console.log(disconnectMessage);
     });
 });
 
