@@ -32,10 +32,11 @@ function start_socket(map) {
     var socket = io.connect('http://localhost:3000');
     var numTweets = 0;
     var feedCount = 0;
+
     socket.on('tweet', function(data) {
         if (!data.coordinates) {
             var coord = data.place.bounding_box.coordinates;
-            coord = new google.maps.LatLng(coord[0][0][0], coord[0][0][0], false);
+            coord = new google.maps.LatLng(coord[0][0][1], coord[0][0][0], false);
         }else {
             var coord = new google.maps.LatLng(data.coordinates.coordinates[1], data.coordinates.coordinates[0], false);
         }
@@ -65,9 +66,13 @@ function start_socket(map) {
             feedCount -= 1;
         }
     });
-
-    google.maps.event.addListener(map, 'idle', function() {
+    $('#frame-btn').click(function() {
         socket.emit('relocate', map.getBounds());
     });
+
+    //google.maps.event.addListener(map, 'idle', function() {
+        //socket.emit('relocate', map.getBounds());
+        //console.log('relocate');
+    //});
 }
 
