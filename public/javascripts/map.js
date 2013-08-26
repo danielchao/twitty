@@ -36,7 +36,7 @@ function start_socket(map) {
     socket.on('tweet', function(data) {
         if (!data.coordinates) {
             var coord = data.place.bounding_box.coordinates;
-            coord = new google.maps.LatLng(coord[0][0][1], coord[0][0][0], false);
+            coord = new google.maps.LatLng(coord[0][1][1], coord[0][1][0], false);
         }else {
             var coord = new google.maps.LatLng(data.coordinates.coordinates[1], data.coordinates.coordinates[0], false);
         }

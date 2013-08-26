@@ -5,7 +5,8 @@ var app = express()
     , io = require('socket.io').listen(server);
 
 io.set('log level', 2);
-server.listen(3000);
+var port = process.env.PORT || 3000
+server.listen(port);
 
 var hbs = require('hbs');
 var Twit = require('twit'); 
@@ -23,6 +24,9 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.emit('tweet', tweet);
             }
         });
+    });
+    socket.on('disconnect', function() {
+        stream.stop();
     });
     stream.on('disconnect', function(disconnectMessage) {
         console.log(disconnectMessage);
